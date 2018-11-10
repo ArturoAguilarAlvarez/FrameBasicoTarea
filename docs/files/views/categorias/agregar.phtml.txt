@@ -1,0 +1,20 @@
+<h2>Agregar categoria</h2>
+
+<form action="<?php echo APP_URL."categorias/agregar"; ?>" method="POST" accept-charset="utf-8">
+	
+	<table class="table table-sm mg-top-10">
+	<tr height="50">
+	<td>
+	<label for="nombre">Nombre</label>
+	<input type="text" name="nombre">
+	</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<button type="submit">Guardar</button>
+		</td>
+	</tr>
+	</table>
+	</tr>
+</form>

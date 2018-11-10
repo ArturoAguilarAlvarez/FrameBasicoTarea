@@ -1,0 +1,57 @@
+<div class="row z-depth-5">
+	<h2 class="center-align">Lista de Tareas</h2>
+	<div class="row">
+		<div class="container right-align">
+			<a class="waves-effect waves-light btn" href="<?php echo APP_URL."tareas/agregar"; ?>"><i class="material-icons left">add</i>Tarea</a>
+			
+			<a class="waves-effect waves-light btn" href="<?php echo APP_URL."categorias"; ?>"> listar Categoria</a>
+		</div>
+		<div class="row">
+			<table class="highlight">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Fecha</th>
+						<th>Prioridad</th>
+						<th>Categoria</th>
+						<th>Accion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($this->tareas as $tarea): ?>
+                        <tr>
+                            <td><?php echo $tarea["tareas"]["id"]; ?></td>
+                            <td><?php echo $tarea["tareas"]["nombre"]; ?></td>
+							<td><?php echo $tarea["tareas"]["descripcion"]; ?></td>
+                            <td><?php $date=date_create($tarea["tareas"]["fecha"]);
+                                echo date_format($date,'d/m/Y');  ?>
+                            <td><?php if ($tarea["tareas"]["prioridad"]<=3) {
+								echo '<span class="new badge green" data-badge-caption="Baja&nbsp;&nbsp;&nbsp;"></span>'; 
+							}else if ($tarea["tareas"]["prioridad"]<=6) {
+								echo '<span class="new badge blue" data-badge-caption="Media"></span>';
+							}else if ($tarea["tareas"]["prioridad"]<=10) {
+								echo '<span class="new badge red" data-badge-caption="Alta&nbsp;&nbsp;&nbsp;&nbsp;"></span>';
+							}
+							?></td>
+                            <td><?php echo $tarea["categorias"]["nombre"]; ?></td>
+                            <td>
+                            	<a href="<?php echo APP_URL."tareas/editar/".$tarea["tareas"]["id"]; ?>"><i class="material-icons">edit</i></a>
+								|
+                            	<a  href="<?php echo APP_URL."tareas/eliminar/".$tarea["tareas"]["id"]; ?>" class="confirmation"><i class="material-icons">delete</i></a>
+                            	|
+								<?php
+								if ($tarea["tareas"]["status"]==1) { ?>
+									<a href="<?php echo APP_URL."tareas/cambiarEstado/".$tarea["tareas"]["id"]."/off"; ?>"><i class="material-icons">done</i></a>
+							<?php }elseif($tarea["tareas"]["status"]==0){ ?>
+									<a href="<?php echo APP_URL."tareas/cambiarEstado/".$tarea["tareas"]["id"]."/on"; ?>"><i class="material-icons">close</i></a>
+							<?php } ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

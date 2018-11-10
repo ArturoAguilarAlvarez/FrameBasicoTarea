@@ -1,0 +1,39 @@
+
+<div class="row z-depth-5">
+	<h2 class="center-align">Lista de categoria</h2>
+	<div class="row">
+		<div class="container right-align">
+
+			<a href="<?php echo APP_URL."tareas	"; ?>"></a>
+			<a class="waves-effect waves-light btn"href="<?php echo APP_URL."categorias/agregar"; ?>""><i class="material-icons left">add</i>Agregar categoria</a>
+			
+			<a class="waves-effect waves-light btn" href="<?php echo APP_URL."tareas"; ?>">lista tarea</a>
+		</div>
+		<div class="row">
+			<table class="highlight">
+				<thead>
+					<tr>
+					<th>ID</th>
+							<th>Nombre</th>
+							<th>Acción</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($this->categoria as $categoria): ?>
+                        <tr>
+
+								<td><?php echo $categoria["id"]; ?></td>
+								<td><?php echo $categoria["nombre"]; ?></td>
+								
+								<td>
+									<a href="<?php echo APP_URL."categorias/editar/".$categoria["id"];?>"><i class="material-icons">edit</i></a>
+								| 
+									<a href="<?php echo APP_URL."categorias/eliminar/".$categoria["id"]; ?>"><i class="material-icons">delete</i></a> 
+								</td>
+                        </tr>
+                    <?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
